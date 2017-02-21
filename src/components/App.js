@@ -10,7 +10,7 @@ import {
 
 const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + start;
 
-const soundBarHeights = [...Array(50).keys()].map(() => getRandomIntBetween(1, 50));
+const soundBarHeights = [...Array(30).keys()].map(() => getRandomIntBetween(1, 50));
 
 class musicPlayerLandscape extends Component {
   render() {
@@ -27,7 +27,7 @@ class musicPlayerLandscape extends Component {
             {soundBarHeights.map((height, index) => (
               <View 
                 key={index} 
-                style={[styles.soundBar, {height, backgroundColor: index % 2 === 0 ? '#426E93' : '#111122'}]} 
+                style={[styles.soundBar, {height}]} 
               />
             ))}
           </View>
@@ -76,6 +76,9 @@ const styles = StyleSheet.create({
   },
   soundBar: {
     flex: 1,
+    backgroundColor: '#426E93',
+    marginRight: 5,
+    borderRadius: 3,
   },
   buttons: {
     flexDirection: 'row',
