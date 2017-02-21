@@ -43,14 +43,38 @@ class musicPlayerLandscape extends Component {
           </View>
           <View style={styles.player}>
             {!isLandscape && <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />}
-            <View style={styles.soundBars}>
-              {soundBarHeights.map((height, index) => (
-                <View 
-                  key={index} 
-                  style={[styles.soundBar, {height}]} 
-                />
-              ))}
-            </View>
+            {isLandscape ? (
+              <View style={styles.playList}>
+                <View style={styles.playListItem}>
+                  <View style={styles.playListItemSoundBars}>
+                    <View style={styles.playListItemSoundBar} />
+                    <View style={styles.playListItemSoundBar} />
+                    <View style={styles.playListItemSoundBar} />
+                  </View>
+                  <Text style={styles.playListItemText}>Dave Aude Remix</Text>
+                  <View style={styles.playListItemPopularity}>
+                    <View style={styles.playListItemPopularityBar} />
+                    <View style={styles.playListItemPopularityBar} />
+                    <View style={styles.playListItemPopularityBar} />
+                    <View style={styles.playListItemPopularityBar} />
+                    <View style={styles.playListItemPopularityBar} />
+                    <View style={styles.playListItemPopularityBar} />
+                    <View style={styles.playListItemPopularityBar} />
+                    <View style={styles.playListItemPopularityBar} />
+                    <View style={styles.playListItemPopularityBar} />
+                  </View>
+                </View>
+              </View>
+            ) : (
+              <View style={styles.soundBars}>
+                {soundBarHeights.map((height, index) => (
+                  <View 
+                    key={index} 
+                    style={[styles.soundBar, {height}]} 
+                  />
+                ))}
+              </View>
+            )}
             <View style={styles.buttons}>
               <View style={styles.nextPreviousButton}>
                 <Icon name="backward" size={isLandscape ? 15 : 20} color="#ffffff" style={{left: -1}} />
@@ -122,6 +146,39 @@ const stylesGeneral = {
     backgroundColor: '#426E93',
     marginRight: 5,
     borderRadius: 3,
+  },
+  playList: {
+    alignSelf: 'stretch',
+  },
+  playListItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  playListItemText: {
+    color: '#AAAAAA',
+    flex: 1,
+  },
+  playListItemSoundBars: {
+    flexDirection: 'row',
+    marginRight: 5,
+  },
+  playListItemSoundBar: {
+    width: 3,
+    height: 10,
+    marginRight: 3,
+    backgroundColor: '#65CBDD',
+  },
+  playListItemPopularity: {
+    flexDirection: 'row',
+  },
+  playListItemPopularityBar: {
+    width: 2,
+    height: 12,
+    marginRight: 2,
+    backgroundColor: '#33333E',
+  },
+  playListItemPopularityBarActive: {
+    backgroundColor: '#878889',
   },
   buttons: {
     flexDirection: 'row',
