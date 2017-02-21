@@ -163,6 +163,7 @@ const stylesGeneral = {
   playlistItem: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 5,
   },
   playlistItemText: {
     color: '#AAAAAA',
