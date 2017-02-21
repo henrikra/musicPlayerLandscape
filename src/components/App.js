@@ -14,12 +14,12 @@ const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + st
 const soundBarHeights = [...Array(30).keys()].map(() => getRandomIntBetween(1, 50));
 const isAndroid = Platform.OS === 'android';
 const playlist = [
-  {name: 'Todd Terry Remix', popularity: 5},
-  {name: 'VARA Remix', popularity: 5},
-  {name: 'Dave Aude Remix', popularity: 3},
-  {name: 'Cahill Remix', popularity: 6},
-  {name: 'Plastic Plates Remix', popularity: 9},
-  {name: 'Mike Cruz Remix', popularity: 2},
+  {name: 'Todd Terry Remix', popularity: 5, isPlaying: false},
+  {name: 'VARA Remix', popularity: 5, isPlaying: false},
+  {name: 'Dave Aude Remix', popularity: 3, isPlaying: true},
+  {name: 'Cahill Remix', popularity: 6, isPlaying: false},
+  {name: 'Plastic Plates Remix', popularity: 9, isPlaying: false},
+  {name: 'Mike Cruz Remix', popularity: 2, isPlaying: false},
 ];
 
 class musicPlayerLandscape extends Component {
@@ -55,7 +55,7 @@ class musicPlayerLandscape extends Component {
               <View style={styles.playlist}>
                 {playlist.map(playlistItem => (
                   <View style={styles.playlistItem} key={playlistItem.name}>
-                    <View style={styles.playlistItemSoundBars}>
+                    <View style={[styles.playlistItemSoundBars, playlistItem.isPlaying && styles.playlistItemSoundBarsVisible]}>
                       <View style={styles.playlistItemSoundBar} />
                       <View style={styles.playlistItemSoundBar} />
                       <View style={styles.playlistItemSoundBar} />
@@ -171,6 +171,10 @@ const stylesGeneral = {
   playlistItemSoundBars: {
     flexDirection: 'row',
     marginRight: 5,
+    opacity: 0,
+  },
+  playlistItemSoundBarsVisible: {
+    opacity: 1,
   },
   playlistItemSoundBar: {
     width: 3,
