@@ -34,32 +34,39 @@ class musicPlayerLandscape extends Component {
     return (
       <View style={styles.container} onLayout={this.setOrientation}>  
         <StatusBar barStyle="light-content" />
-        <View style={styles.navigation}>
-          <Text style={styles.song}>Dave Aude Remix</Text>
-          <Text style={styles.artist}>Demi Lovato</Text>
-        </View>
-        <View style={styles.player}>
-          <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />
-          <View style={styles.soundBars}>
-            {soundBarHeights.map((height, index) => (
-              <View 
-                key={index} 
-                style={[styles.soundBar, {height}]} 
-              />
-            ))}
+        <View style={styles.innerContainer}>
+          <View style={styles.navigation}>
+            <Text style={styles.song}>Dave Aude Remix</Text>
+            <Text style={styles.artist}>Demi Lovato</Text>
           </View>
-          <View style={styles.buttons}>
-            <View style={styles.nextPreviousButton}>
-              <Icon name="backward" size={20} color="#ffffff" style={{left: -1}} />
+          <View style={styles.player}>
+            <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />
+            <View style={styles.soundBars}>
+              {soundBarHeights.map((height, index) => (
+                <View 
+                  key={index} 
+                  style={[styles.soundBar, {height}]} 
+                />
+              ))}
             </View>
-            <View style={styles.playPauseButton}>
-              <Icon name="pause" size={25} color="#ffffff" />
-            </View>
-            <View style={styles.nextPreviousButton}>
-              <Icon name="forward" size={20} color="#ffffff" style={{left: 2}} />
+            <View style={styles.buttons}>
+              <View style={styles.nextPreviousButton}>
+                <Icon name="backward" size={20} color="#ffffff" style={{left: -1}} />
+              </View>
+              <View style={styles.playPauseButton}>
+                <Icon name="pause" size={25} color="#ffffff" />
+              </View>
+              <View style={styles.nextPreviousButton}>
+                <Icon name="forward" size={20} color="#ffffff" style={{left: 2}} />
+              </View>
             </View>
           </View>
         </View>
+        {this.state.isLandscape && (
+          <View style={styles.coverBigContainer}>
+            <Image source={require('../img/demi-lovato.jpg')} style={styles.coverBig} />
+          </View>
+        )}
       </View>
     );
   }
@@ -69,6 +76,9 @@ const stylesGeneral = {
   container: {
     flex: 1,
     backgroundColor: '#111122',
+  },
+  innerContainer: {
+    flex: 1, 
   },
   navigation: {
     backgroundColor: '#232333',
@@ -92,6 +102,14 @@ const stylesGeneral = {
     height: 200,
     borderRadius: 100,
     marginBottom: 50,
+  },
+  coverBigContainer: {
+    flex: 0,
+    backgroundColor: 'red',
+  },
+  coverBig: {
+    width: null,
+    flex: 1,
   },
   soundBars: {
     flexDirection: 'row',
@@ -129,8 +147,11 @@ const stylesGeneral = {
 
 const stylesLandscape = {
   container: {
-    backgroundColor: 'red',
+    flexDirection: 'row-reverse',
   },
+  coverBigContainer: {
+    flex: 1,
+  }
 };
 
 export default musicPlayerLandscape;
