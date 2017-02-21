@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + start;
 
 const soundBarHeights = [...Array(30).keys()].map(() => getRandomIntBetween(1, 50));
+const isAndroid = Platform.OS === 'android';
 
 class musicPlayerLandscape extends Component {
   state = {
@@ -84,7 +85,7 @@ const stylesGeneral = {
   navigation: {
     backgroundColor: '#232333',
     padding: 20,
-    paddingTop: Platform.OS === 'ios' ? 40 : 20,
+    paddingTop: isAndroid ? 20 : 40,
     alignItems: 'center',
   },
   player: {
@@ -152,7 +153,13 @@ const stylesLandscape = {
   },
   coverBigContainer: {
     flex: 1,
-  }
+  },
+  navigation: {
+    alignItems: 'flex-start',
+    paddingTop: isAndroid ? 0 : 30,
+    paddingBottom: 20,
+    paddingLeft: 40,
+  },
 };
 
 export default musicPlayerLandscape;
