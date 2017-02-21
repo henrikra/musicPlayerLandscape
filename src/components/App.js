@@ -45,7 +45,7 @@ class musicPlayerLandscape extends Component {
               <Icon name="backward" size={20} color="#ffffff" style={{left: -1}} />
             </View>
             <View style={styles.playPauseButton}>
-              <Icon name="pause" size={25} color="#ffffff" style={{}} />
+              <Icon name="pause" size={25} color="#ffffff" />
             </View>
             <View style={styles.nextPreviousButton}>
               <Icon name="forward" size={20} color="#ffffff" style={{left: 2}} />
