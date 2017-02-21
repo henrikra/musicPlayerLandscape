@@ -31,6 +31,11 @@ class musicPlayerLandscape extends Component {
               />
             ))}
           </View>
+          <View style={styles.buttons}>
+            <View style={styles.nextPreviousButton} />
+            <View style={styles.playPauseButton} />
+            <View style={styles.nextPreviousButton} />
+          </View>
         </View>
       </View>
     );
@@ -71,6 +76,24 @@ const styles = StyleSheet.create({
   },
   soundBar: {
     flex: 1,
+  },
+  buttons: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    marginTop: 30,
+  },
+  playPauseButton: {
+    height: 60,
+    width: 60,
+    backgroundColor: '#232333',
+    borderRadius: 30,
+    marginHorizontal: 20,
+  },
+  nextPreviousButton: {
+    height: 50,
+    width: 50,
+    backgroundColor: '#7854FF',
+    borderRadius: 25,
   },
 });
 
