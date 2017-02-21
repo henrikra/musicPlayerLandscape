@@ -234,6 +234,7 @@ const stylesLandscape = {
   playPauseButton: {
     width: 50,
     height: 50,
+    marginHorizontal: 15,
   },
   nextPreviousButton: {
     width: 40,
