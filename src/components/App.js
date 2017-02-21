@@ -7,6 +7,7 @@ import {
   Platform,
   Image,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + start;
 
@@ -32,9 +33,15 @@ class musicPlayerLandscape extends Component {
             ))}
           </View>
           <View style={styles.buttons}>
-            <View style={styles.nextPreviousButton} />
-            <View style={styles.playPauseButton} />
-            <View style={styles.nextPreviousButton} />
+            <View style={styles.nextPreviousButton}>
+              <Icon name="backward" size={20} color="#ffffff" style={{left: -1}} />
+            </View>
+            <View style={styles.playPauseButton}>
+              <Icon name="pause" size={25} color="#ffffff" style={{}} />
+            </View>
+            <View style={styles.nextPreviousButton}>
+              <Icon name="forward" size={20} color="#ffffff" style={{left: 2}} />
+            </View>
           </View>
         </View>
       </View>
@@ -91,12 +98,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#232333',
     borderRadius: 30,
     marginHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   nextPreviousButton: {
     height: 50,
     width: 50,
     backgroundColor: '#7854FF',
     borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
