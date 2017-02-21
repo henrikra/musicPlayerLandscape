@@ -23,6 +23,14 @@ class musicPlayerLandscape extends Component {
   }
   
   render() {
+    const styles = Object.keys(stylesGeneral).reduce((acc, val) => {
+      acc[val] = stylesGeneral[val];
+      if (this.state.isLandscape && stylesLandscape.hasOwnProperty(val)) {
+        acc[val] = {...stylesGeneral[val], ...stylesLandscape[val]}
+      }
+      return acc;
+    }, {});
+
     return (
       <View style={styles.container} onLayout={this.setOrientation}>  
         <StatusBar barStyle="light-content" />
@@ -57,7 +65,7 @@ class musicPlayerLandscape extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const stylesGeneral = {
   container: {
     flex: 1,
     backgroundColor: '#111122',
@@ -117,6 +125,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-});
+};
+
+const stylesLandscape = {
+  container: {
+    backgroundColor: 'red',
+  },
+};
 
 export default musicPlayerLandscape;
