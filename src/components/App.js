@@ -53,13 +53,13 @@ class musicPlayerLandscape extends Component {
             </View>
             <View style={styles.buttons}>
               <View style={styles.nextPreviousButton}>
-                <Icon name="backward" size={20} color="#ffffff" style={{left: -1}} />
+                <Icon name="backward" size={isLandscape ? 15 : 20} color="#ffffff" style={{left: -1}} />
               </View>
               <View style={styles.playPauseButton}>
-                <Icon name="pause" size={25} color="#ffffff" />
+                <Icon name="pause" size={isLandscape ? 20 : 25} color="#ffffff" />
               </View>
               <View style={styles.nextPreviousButton}>
-                <Icon name="forward" size={20} color="#ffffff" style={{left: 2}} />
+                <Icon name="forward" size={isLandscape ? 15 : 20} color="#ffffff" style={{left: 2}} />
               </View>
             </View>
           </View>
@@ -159,6 +159,14 @@ const stylesLandscape = {
     paddingTop: isAndroid ? 0 : 30,
     paddingBottom: 20,
     paddingLeft: 40,
+  },
+  playPauseButton: {
+    width: 50,
+    height: 50,
+  },
+  nextPreviousButton: {
+    width: 40,
+    height: 40,
   },
 };
 
