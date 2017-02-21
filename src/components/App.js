@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   playPauseButton: {
     height: 60,
     width: 60,
-    backgroundColor: '#232333',
+    backgroundColor: '#33333E',
     borderRadius: 30,
     marginHorizontal: 20,
     justifyContent: 'center',
