@@ -5,6 +5,7 @@ import {
   View,
   StatusBar,
   Platform,
+  Image,
 } from 'react-native';
 
 class musicPlayerLandscape extends Component {
@@ -16,6 +17,9 @@ class musicPlayerLandscape extends Component {
           <Text style={styles.song}>Dave Aude Remix</Text>
           <Text style={styles.artist}>Demi Lovato</Text>
         </View>
+        <View style={styles.player}>
+          <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />
+        </View>
       </View>
     );
   }
@@ -24,12 +28,15 @@ class musicPlayerLandscape extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#111122',
   },
   navigation: {
     backgroundColor: '#232333',
     padding: 20,
     paddingTop: Platform.OS === 'ios' ? 40 : 20,
+    alignItems: 'center',
+  },
+  player: {
     alignItems: 'center',
   },
   song: {
@@ -38,7 +45,13 @@ const styles = StyleSheet.create({
   },
   artist: {
     color: '#ffffff',
-  }
+  },
+  cover: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    marginTop: 30,
+  },
 });
 
 export default musicPlayerLandscape;
