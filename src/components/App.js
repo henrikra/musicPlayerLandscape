@@ -14,7 +14,12 @@ const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + st
 const soundBarHeights = [...Array(30).keys()].map(() => getRandomIntBetween(1, 50));
 const isAndroid = Platform.OS === 'android';
 const playlist = [
-
+  {name: 'Todd Terry Remix', popularity: 5},
+  {name: 'VARA Remix', popularity: 5},
+  {name: 'Dave Aude Remix', popularity: 3},
+  {name: 'Cahill Remix', popularity: 6},
+  {name: 'Plastic Plates Remix', popularity: 9},
+  {name: 'Mike Cruz Remix', popularity: 2},
 ];
 
 class musicPlayerLandscape extends Component {
@@ -48,25 +53,27 @@ class musicPlayerLandscape extends Component {
             {!isLandscape && <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />}
             {isLandscape ? (
               <View style={styles.playlist}>
-                <View style={styles.playlistItem}>
-                  <View style={styles.playlistItemSoundBars}>
-                    <View style={styles.playlistItemSoundBar} />
-                    <View style={styles.playlistItemSoundBar} />
-                    <View style={styles.playlistItemSoundBar} />
+                {playlist.map(playlistItem => (
+                  <View style={styles.playlistItem} key={playlistItem.name}>
+                    <View style={styles.playlistItemSoundBars}>
+                      <View style={styles.playlistItemSoundBar} />
+                      <View style={styles.playlistItemSoundBar} />
+                      <View style={styles.playlistItemSoundBar} />
+                    </View>
+                    <Text style={styles.playlistItemText}>{playlistItem.name}</Text>
+                    <View style={styles.playlistItemPopularity}>
+                      {[...Array(10).keys()].map(index => (
+                        <View 
+                          key={index} 
+                          style={[
+                            styles.playlistItemPopularityBar, 
+                            index < playlistItem.popularity && styles.playlistItemPopularityBarActive,
+                          ]} 
+                        />
+                      ))}
+                    </View>
                   </View>
-                  <Text style={styles.playlistItemText}>Dave Aude Remix</Text>
-                  <View style={styles.playlistItemPopularity}>
-                    <View style={styles.playlistItemPopularityBar} />
-                    <View style={styles.playlistItemPopularityBar} />
-                    <View style={styles.playlistItemPopularityBar} />
-                    <View style={styles.playlistItemPopularityBar} />
-                    <View style={styles.playlistItemPopularityBar} />
-                    <View style={styles.playlistItemPopularityBar} />
-                    <View style={styles.playlistItemPopularityBar} />
-                    <View style={styles.playlistItemPopularityBar} />
-                    <View style={styles.playlistItemPopularityBar} />
-                  </View>
-                </View>
+                ))}
               </View>
             ) : (
               <View style={styles.soundBars}>
