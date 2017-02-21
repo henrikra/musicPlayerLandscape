@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  StatusBar,
+  Platform,
 } from 'react-native';
 
 class musicPlayerLandscape extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style={styles.container}>  
+        <StatusBar barStyle="light-content" />
+        <View style={styles.navigation}>
+          <Text style={styles.song}>Dave Aude Remix</Text>
+          <Text style={styles.artist}>Demi Lovato</Text>
+        </View>
       </View>
     );
   }
@@ -27,20 +24,21 @@ class musicPlayerLandscape extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  navigation: {
+    backgroundColor: '#232333',
+    padding: 20,
+    paddingTop: Platform.OS === 'ios' ? 40 : 20,
+    alignItems: 'center',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  song: {
+    color: '#BEB7F3',
+    fontSize: 16,
   },
+  artist: {
+    color: '#ffffff',
+  }
 });
 
 export default musicPlayerLandscape;
