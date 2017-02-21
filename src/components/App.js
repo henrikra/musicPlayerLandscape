@@ -14,9 +14,17 @@ const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + st
 const soundBarHeights = [...Array(30).keys()].map(() => getRandomIntBetween(1, 50));
 
 class musicPlayerLandscape extends Component {
+  state = {
+    isLandscape: false,
+  }
+
+  setOrientation = ({nativeEvent}) => {
+    this.setState({isLandscape: nativeEvent.layout.width > nativeEvent.layout.height});
+  }
+  
   render() {
     return (
-      <View style={styles.container}>  
+      <View style={styles.container} onLayout={this.setOrientation}>  
         <StatusBar barStyle="light-content" />
         <View style={styles.navigation}>
           <Text style={styles.song}>Dave Aude Remix</Text>
