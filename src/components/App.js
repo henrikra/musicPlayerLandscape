@@ -13,6 +13,9 @@ const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + st
 
 const soundBarHeights = [...Array(30).keys()].map(() => getRandomIntBetween(1, 50));
 const isAndroid = Platform.OS === 'android';
+const playlist = [
+
+];
 
 class musicPlayerLandscape extends Component {
   state = {
@@ -44,24 +47,24 @@ class musicPlayerLandscape extends Component {
           <View style={styles.player}>
             {!isLandscape && <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />}
             {isLandscape ? (
-              <View style={styles.playList}>
-                <View style={styles.playListItem}>
-                  <View style={styles.playListItemSoundBars}>
-                    <View style={styles.playListItemSoundBar} />
-                    <View style={styles.playListItemSoundBar} />
-                    <View style={styles.playListItemSoundBar} />
+              <View style={styles.playlist}>
+                <View style={styles.playlistItem}>
+                  <View style={styles.playlistItemSoundBars}>
+                    <View style={styles.playlistItemSoundBar} />
+                    <View style={styles.playlistItemSoundBar} />
+                    <View style={styles.playlistItemSoundBar} />
                   </View>
-                  <Text style={styles.playListItemText}>Dave Aude Remix</Text>
-                  <View style={styles.playListItemPopularity}>
-                    <View style={styles.playListItemPopularityBar} />
-                    <View style={styles.playListItemPopularityBar} />
-                    <View style={styles.playListItemPopularityBar} />
-                    <View style={styles.playListItemPopularityBar} />
-                    <View style={styles.playListItemPopularityBar} />
-                    <View style={styles.playListItemPopularityBar} />
-                    <View style={styles.playListItemPopularityBar} />
-                    <View style={styles.playListItemPopularityBar} />
-                    <View style={styles.playListItemPopularityBar} />
+                  <Text style={styles.playlistItemText}>Dave Aude Remix</Text>
+                  <View style={styles.playlistItemPopularity}>
+                    <View style={styles.playlistItemPopularityBar} />
+                    <View style={styles.playlistItemPopularityBar} />
+                    <View style={styles.playlistItemPopularityBar} />
+                    <View style={styles.playlistItemPopularityBar} />
+                    <View style={styles.playlistItemPopularityBar} />
+                    <View style={styles.playlistItemPopularityBar} />
+                    <View style={styles.playlistItemPopularityBar} />
+                    <View style={styles.playlistItemPopularityBar} />
+                    <View style={styles.playlistItemPopularityBar} />
                   </View>
                 </View>
               </View>
@@ -147,37 +150,37 @@ const stylesGeneral = {
     marginRight: 5,
     borderRadius: 3,
   },
-  playList: {
+  playlist: {
     alignSelf: 'stretch',
   },
-  playListItem: {
+  playlistItem: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  playListItemText: {
+  playlistItemText: {
     color: '#AAAAAA',
     flex: 1,
   },
-  playListItemSoundBars: {
+  playlistItemSoundBars: {
     flexDirection: 'row',
     marginRight: 5,
   },
-  playListItemSoundBar: {
+  playlistItemSoundBar: {
     width: 3,
     height: 10,
     marginRight: 3,
     backgroundColor: '#65CBDD',
   },
-  playListItemPopularity: {
+  playlistItemPopularity: {
     flexDirection: 'row',
   },
-  playListItemPopularityBar: {
+  playlistItemPopularityBar: {
     width: 2,
     height: 12,
     marginRight: 2,
     backgroundColor: '#33333E',
   },
-  playListItemPopularityBarActive: {
+  playlistItemPopularityBarActive: {
     backgroundColor: '#878889',
   },
   buttons: {
