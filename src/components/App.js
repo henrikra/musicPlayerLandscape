@@ -8,6 +8,10 @@ import {
   Image,
 } from 'react-native';
 
+const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + start;
+
+const soundBarHeights = [...Array(50).keys()].map(() => getRandomIntBetween(1, 50));
+
 class musicPlayerLandscape extends Component {
   render() {
     return (
@@ -19,6 +23,14 @@ class musicPlayerLandscape extends Component {
         </View>
         <View style={styles.player}>
           <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />
+          <View style={styles.soundBars}>
+            {soundBarHeights.map((height, index) => (
+              <View 
+                key={index} 
+                style={[styles.soundBar, {height, backgroundColor: index % 2 === 0 ? '#426E93' : '#111122'}]} 
+              />
+            ))}
+          </View>
         </View>
       </View>
     );
@@ -38,6 +50,7 @@ const styles = StyleSheet.create({
   },
   player: {
     alignItems: 'center',
+    padding: 30,
   },
   song: {
     color: '#BEB7F3',
@@ -50,7 +63,14 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 100,
-    marginTop: 30,
+    marginBottom: 50,
+  },
+  soundBars: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  soundBar: {
+    flex: 1,
   },
 });
 
