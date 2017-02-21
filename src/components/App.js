@@ -30,6 +30,7 @@ class musicPlayerLandscape extends Component {
       }
       return acc;
     }, {});
+    const {isLandscape} = this.state;
 
     return (
       <View style={styles.container} onLayout={this.setOrientation}>  
@@ -40,7 +41,7 @@ class musicPlayerLandscape extends Component {
             <Text style={styles.artist}>Demi Lovato</Text>
           </View>
           <View style={styles.player}>
-            <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />
+            {!isLandscape && <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />}
             <View style={styles.soundBars}>
               {soundBarHeights.map((height, index) => (
                 <View 
@@ -62,7 +63,7 @@ class musicPlayerLandscape extends Component {
             </View>
           </View>
         </View>
-        {this.state.isLandscape && (
+        {isLandscape && (
           <View style={styles.coverBigContainer}>
             <Image source={require('../img/demi-lovato.jpg')} style={styles.coverBig} />
           </View>
