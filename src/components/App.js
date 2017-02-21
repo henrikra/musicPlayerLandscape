@@ -141,7 +141,6 @@ const stylesGeneral = {
   },
   coverBigContainer: {
     flex: 0,
-    backgroundColor: 'red',
   },
   coverBig: {
     width: null,
