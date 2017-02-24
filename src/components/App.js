@@ -6,6 +6,7 @@ import {
   StatusBar,
   Platform,
   Image,
+  Animated,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -25,6 +26,23 @@ const playlist = [
 class musicPlayerLandscape extends Component {
   state = {
     isLandscape: false,
+    soundBarHeight: new Animated.Value(0),
+  }
+
+  componentDidMount() {
+    this.animateSoundBars();
+  }
+  
+  animateSoundBars = () => {
+    Animated.timing(
+      this.state.soundBarHeight, 
+      {toValue: 1, duration: 30},
+    ).start(() => {
+      Animated.timing(
+        this.state.soundBarHeight, 
+        {toValue: 0.3, duration: 420},
+      ).start(this.animateSoundBars);
+    });
   }
 
   setOrientation = ({nativeEvent}) => {
@@ -39,7 +57,7 @@ class musicPlayerLandscape extends Component {
       }
       return acc;
     }, {});
-    const {isLandscape} = this.state;
+    const {isLandscape, soundBarHeight} = this.state;
 
     return (
       <View style={styles.container} onLayout={this.setOrientation}>  
@@ -78,9 +96,17 @@ class musicPlayerLandscape extends Component {
             ) : (
               <View style={styles.soundBars}>
                 {soundBarHeights.map((height, index) => (
-                  <View 
+                  <Animated.View 
                     key={index} 
-                    style={[styles.soundBar, {height}]} 
+                    style={[
+                      styles.soundBar, 
+                      {
+                        height: soundBarHeight.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [0, getRandomIntBetween(1, 50)],
+                        }),
+                      },
+                    ]} 
                   />
                 ))}
               </View>
@@ -149,6 +175,7 @@ const stylesGeneral = {
   soundBars: {
     flexDirection: 'row',
     alignItems: 'flex-end',
+    height: 50,
   },
   soundBar: {
     flex: 1,
