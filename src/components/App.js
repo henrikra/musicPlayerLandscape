@@ -103,7 +103,7 @@ class musicPlayerLandscape extends Component {
                       {
                         height: soundBarHeight.interpolate({
                           inputRange: [0, 1],
-                          outputRange: [0, getRandomIntBetween(1, 50)],
+                          outputRange: [0, getRandomIntBetween(1, 70)],
                         }),
                       },
                     ]} 
@@ -175,7 +175,7 @@ const stylesGeneral = {
   soundBars: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    height: 50,
+    height: 70,
   },
   soundBar: {
     flex: 1,
