@@ -48,16 +48,20 @@ class musicPlayerLandscape extends Component {
   setOrientation = ({nativeEvent}) => {
     this.setState({isLandscape: nativeEvent.layout.width > nativeEvent.layout.height});
   }
-  
-  render() {
-    const styles = Object.keys(stylesGeneral).reduce((acc, val) => {
+
+  combineStyles = () => {
+    return Object.keys(stylesGeneral).reduce((acc, val) => {
       acc[val] = stylesGeneral[val];
       if (this.state.isLandscape && stylesLandscape.hasOwnProperty(val)) {
         acc[val] = {...stylesGeneral[val], ...stylesLandscape[val]}
       }
       return acc;
     }, {});
+  }
+  
+  render() {
     const {isLandscape, soundBarHeight} = this.state;
+    const styles = this.combineStyles();
 
     return (
       <View style={styles.container} onLayout={this.setOrientation}>  
