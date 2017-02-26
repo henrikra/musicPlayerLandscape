@@ -51,7 +51,7 @@ class musicPlayerLandscape extends Component {
 
   animateTimeline = () => {
     this.state.timelineWidth.setValue(0);
-    Animated.timing(this.state.timelineWidth, {toValue: 1, duration: 10000}).start();
+    Animated.timing(this.state.timelineWidth, {toValue: 1, duration: getRandomIntBetween(20000, 25000)}).start();
   }
   
   animateSoundBars = () => {
