@@ -37,10 +37,9 @@ class musicPlayerLandscape extends Component {
   componentDidUpdate() {
     if (this.state.isLandscape) {
       this.state.playlistAppear.forEach(animation => animation.setValue(0));
-      const animations = this.state.playlistAppear.map(animation => {
+      Animated.stagger(100, this.state.playlistAppear.map(animation => {
         return Animated.timing(animation, {toValue: 1, duration: 300});
-      });
-      Animated.stagger(100, animations).start();
+      })).start();
     }
   }
   
