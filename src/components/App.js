@@ -68,6 +68,11 @@ class musicPlayerLandscape extends Component {
     this.setState({isPlayingIndex: isPlayingIndex === playlist.length - 1 ? 0 : isPlayingIndex + 1});  
   }
 
+  playPrevious = () => {
+    const {isPlayingIndex} = this.state;
+    this.setState({isPlayingIndex: isPlayingIndex === 0 ? playlist.length - 1 : isPlayingIndex - 1});  
+  }
+
   combineStyles = () => {
     return Object.keys(stylesGeneral).reduce((combinedStyles, val) => {
       combinedStyles[val] = stylesGeneral[val];
@@ -158,13 +163,15 @@ class musicPlayerLandscape extends Component {
             )}
             <View style={styles.buttons}>
               <View style={styles.nextPreviousButton}>
-                <Icon name="backward" size={isLandscape ? 15 : 20} color="#ffffff" style={{left: -1}} />
+                <TouchableOpacity onPress={this.playPrevious} style={styles.nextPreviousButtonPressable}>
+                  <Icon name="backward" size={isLandscape ? 15 : 20} color="#ffffff" style={{left: -1}} />
+                </TouchableOpacity>
               </View>
               <View style={styles.playPauseButton}>
                 <Icon name="pause" size={isLandscape ? 20 : 25} color="#ffffff" />
               </View>
               <View style={styles.nextPreviousButton}>
-                <TouchableOpacity onPress={this.playNext}>
+                <TouchableOpacity onPress={this.playNext} style={styles.nextPreviousButtonPressable}>
                   <Icon name="forward" size={isLandscape ? 15 : 20} color="#ffffff" style={{left: 2}} />
                 </TouchableOpacity>
               </View>
@@ -289,10 +296,12 @@ const stylesGeneral = {
     alignItems: 'center',
   },
   nextPreviousButton: {
-    height: 50,
-    width: 50,
     backgroundColor: '#7854FF',
     borderRadius: 25,
+  },
+  nextPreviousButtonPressable: {
+    height: 50,
+    width: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -316,7 +325,7 @@ const stylesLandscape = {
     height: 50,
     marginHorizontal: 15,
   },
-  nextPreviousButton: {
+  nextPreviousButtonPressable: {
     width: 40,
     height: 40,
   },
