@@ -30,10 +30,12 @@ class musicPlayerLandscape extends Component {
     soundBarHeight: new Animated.Value(0),
     playlistAppear: playlist.map(playlistItem => new Animated.Value(0)),
     isPlayingIndex: 3,
+    timelineWidth: new Animated.Value(0),
   }
 
   componentDidMount() {
     this.animateSoundBars();
+    this.animateTimeline();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -45,6 +47,11 @@ class musicPlayerLandscape extends Component {
         })).start();
       }
     }
+  }
+
+  animateTimeline = () => {
+    this.state.timelineWidth.setValue(0);
+    Animated.timing(this.state.timelineWidth, {toValue: 1, duration: 10000}).start();
   }
   
   animateSoundBars = () => {
@@ -66,11 +73,13 @@ class musicPlayerLandscape extends Component {
   playNext = () => {
     const {isPlayingIndex} = this.state;
     this.setState({isPlayingIndex: isPlayingIndex === playlist.length - 1 ? 0 : isPlayingIndex + 1});  
+    this.animateTimeline();
   }
 
   playPrevious = () => {
     const {isPlayingIndex} = this.state;
     this.setState({isPlayingIndex: isPlayingIndex === 0 ? playlist.length - 1 : isPlayingIndex - 1});  
+    this.animateTimeline();
   }
 
   combineStyles = () => {
@@ -177,10 +186,31 @@ class musicPlayerLandscape extends Component {
               </View>
             </View>
             <View style={styles.timelineContainer}>
-              <View style={styles.timeline}>
-                <View style={styles.timelineColored} />
-              </View>
-              <View style={styles.timelineDot} />
+              <Animated.View 
+                style={[
+                  styles.timeline,
+                  {
+                    width: this.state.timelineWidth.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, 200],
+                    }),
+                  },
+                ]}
+              >
+                <Animated.View 
+                  style={[
+                    styles.timelineColored,
+                    {
+                      width: this.state.timelineWidth.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, 200],
+                      }),
+                    },
+                  ]} 
+                >
+                  <View style={styles.timelineDot} />
+                </Animated.View>
+              </Animated.View>
             </View>
           </View>
         </View>
@@ -338,8 +368,8 @@ const stylesGeneral = {
     height: 20,
     backgroundColor: '#5456fd',
     position: 'absolute',
-    top: -5,
-    left: 90,
+    top: -7,
+    right: -10,
     borderRadius: 10,
   },
 };
