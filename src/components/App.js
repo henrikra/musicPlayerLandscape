@@ -26,11 +26,22 @@ class musicPlayerLandscape extends Component {
   state = {
     isLandscape: false,
     soundBarHeight: new Animated.Value(0),
+    playlistAppear: playlist.map(playlistItem => new Animated.Value(0)),
   }
 
   componentDidMount() {
     this.animateSoundBars();
   }
+
+  componentDidUpdate() {
+    if (this.state.isLandscape) {
+      const animations = this.state.playlistAppear.map(animation => {
+        return Animated.timing(animation, {toValue: 1, duration: 200});
+      });
+      Animated.stagger(75, animations).start();
+    }
+  }
+  
   
   animateSoundBars = () => {
     Animated.timing(
@@ -74,8 +85,19 @@ class musicPlayerLandscape extends Component {
             {!isLandscape && <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />}
             {isLandscape ? (
               <View style={styles.playlist}>
-                {playlist.map(playlistItem => (
-                  <View style={styles.playlistItem} key={playlistItem.name}>
+                {playlist.map((playlistItem, index) => (
+                  <Animated.View 
+                    style={[
+                      styles.playlistItem,
+                      {
+                        left: this.state.playlistAppear[index].interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [200, 0],
+                        })
+                      }
+                    ]} 
+                    key={playlistItem.name}
+                  >
                     <View style={[styles.playlistItemSoundBars, playlistItem.isPlaying && styles.playlistItemSoundBarsVisible]}>
                       {[...Array(3).keys()].map(index => (
                         <Animated.View 
@@ -104,7 +126,7 @@ class musicPlayerLandscape extends Component {
                         />
                       ))}
                     </View>
-                  </View>
+                  </Animated.View>
                 ))}
               </View>
             ) : (
@@ -199,6 +221,7 @@ const stylesGeneral = {
   },
   playlist: {
     alignSelf: 'stretch',
+    overflow: 'hidden',
   },
   playlistItem: {
     flexDirection: 'row',
