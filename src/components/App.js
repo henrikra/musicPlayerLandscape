@@ -49,12 +49,12 @@ class musicPlayerLandscape extends Component {
   }
 
   combineStyles = () => {
-    return Object.keys(stylesGeneral).reduce((acc, val) => {
-      acc[val] = stylesGeneral[val];
+    return Object.keys(stylesGeneral).reduce((combinedStyles, val) => {
+      combinedStyles[val] = stylesGeneral[val];
       if (this.state.isLandscape && stylesLandscape.hasOwnProperty(val)) {
-        acc[val] = {...stylesGeneral[val], ...stylesLandscape[val]}
+        combinedStyles[val] = {...stylesGeneral[val], ...stylesLandscape[val]}
       }
-      return acc;
+      return combinedStyles;
     }, {});
   }
   
