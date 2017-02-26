@@ -8,6 +8,7 @@ import {
   Image,
   Animated,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -35,12 +36,14 @@ class musicPlayerLandscape extends Component {
     this.animateSoundBars();
   }
 
-  componentDidUpdate() {
-    if (this.state.isLandscape) {
-      this.state.playlistAppear.forEach(animation => animation.setValue(0));
-      Animated.stagger(100, this.state.playlistAppear.map(animation => {
-        return Animated.timing(animation, {toValue: 1, duration: 300});
-      })).start();
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.isLandscape !== this.state.isLandscape) {
+      if (this.state.isLandscape) {
+        this.state.playlistAppear.forEach(animation => animation.setValue(0));
+        Animated.stagger(100, this.state.playlistAppear.map(animation => {
+          return Animated.timing(animation, {toValue: 1, duration: 300});
+        })).start();
+      }
     }
   }
   
@@ -58,6 +61,11 @@ class musicPlayerLandscape extends Component {
 
   setOrientation = ({nativeEvent}) => {
     this.setState({isLandscape: nativeEvent.layout.width > nativeEvent.layout.height});
+  }
+
+  playNext = () => {
+    const {isPlayingIndex} = this.state;
+    this.setState({isPlayingIndex: isPlayingIndex === playlist.length - 1 ? 0 : isPlayingIndex + 1});  
   }
 
   combineStyles = () => {
@@ -156,7 +164,9 @@ class musicPlayerLandscape extends Component {
                 <Icon name="pause" size={isLandscape ? 20 : 25} color="#ffffff" />
               </View>
               <View style={styles.nextPreviousButton}>
-                <Icon name="forward" size={isLandscape ? 15 : 20} color="#ffffff" style={{left: 2}} />
+                <TouchableOpacity onPress={this.playNext}>
+                  <Icon name="forward" size={isLandscape ? 15 : 20} color="#ffffff" style={{left: 2}} />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
