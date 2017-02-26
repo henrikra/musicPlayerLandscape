@@ -7,6 +7,7 @@ import {
   Platform,
   Image,
   Animated,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -35,10 +36,11 @@ class musicPlayerLandscape extends Component {
 
   componentDidUpdate() {
     if (this.state.isLandscape) {
+      this.state.playlistAppear.forEach(animation => animation.setValue(0));
       const animations = this.state.playlistAppear.map(animation => {
-        return Animated.timing(animation, {toValue: 1, duration: 200});
+        return Animated.timing(animation, {toValue: 1, duration: 300});
       });
-      Animated.stagger(75, animations).start();
+      Animated.stagger(100, animations).start();
     }
   }
   
@@ -92,7 +94,7 @@ class musicPlayerLandscape extends Component {
                       {
                         left: this.state.playlistAppear[index].interpolate({
                           inputRange: [0, 1],
-                          outputRange: [200, 0],
+                          outputRange: [Dimensions.get('window').width / 2, 0],
                         })
                       }
                     ]} 
