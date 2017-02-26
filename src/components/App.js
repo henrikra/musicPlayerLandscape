@@ -351,7 +351,6 @@ const stylesGeneral = {
   timeline: {
     backgroundColor: '#111122',
     height: 10,
-    width: 100,
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
     justifyContent: 'center',
@@ -398,6 +397,18 @@ const stylesLandscape = {
   },
   timelineContainer: {
     marginTop: 15,
+    height: 7,
+  },
+  timeline: {
+    height: 7,
+  },
+  timelineColored: {
+    height: 4,
+  },
+  timelineDot: {
+    top: -6,
+    width: 15,
+    height: 15,
   },
 };
 
