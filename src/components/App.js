@@ -176,6 +176,12 @@ class musicPlayerLandscape extends Component {
                 </TouchableOpacity>
               </View>
             </View>
+            <View style={styles.timelineContainer}>
+              <View style={styles.timeline}>
+                <View style={styles.timelineColored} />
+              </View>
+              <View style={styles.timelineDot} />
+            </View>
           </View>
         </View>
         {isLandscape && (
@@ -305,6 +311,37 @@ const stylesGeneral = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  timelineContainer: {
+    height: 10,
+    marginTop: 30,
+    backgroundColor: '#33333E',
+    alignSelf: 'stretch',
+    borderRadius: 20,
+  },
+  timeline: {
+    backgroundColor: '#111122',
+    height: 10,
+    width: 100,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+    justifyContent: 'center',
+  },
+  timelineColored: {
+    backgroundColor: '#5456fd',
+    height: 6,
+    width: 100,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+  },
+  timelineDot: {
+    width: 20,
+    height: 20,
+    backgroundColor: '#5456fd',
+    position: 'absolute',
+    top: -5,
+    left: 90,
+    borderRadius: 10,
+  },
 };
 
 const stylesLandscape = {
@@ -328,6 +365,9 @@ const stylesLandscape = {
   nextPreviousButtonPressable: {
     width: 40,
     height: 40,
+  },
+  timelineContainer: {
+    marginTop: 15,
   },
 };
 
