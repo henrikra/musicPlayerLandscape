@@ -15,12 +15,12 @@ const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + st
 
 const isAndroid = Platform.OS === 'android';
 const playlist = [
-  {name: 'Todd Terry Remix', popularity: 5, isPlaying: false},
-  {name: 'VARA Remix', popularity: 5, isPlaying: false},
-  {name: 'Dave Aude Remix', popularity: 3, isPlaying: true},
-  {name: 'Cahill Remix', popularity: 6, isPlaying: false},
-  {name: 'Plastic Plates Remix', popularity: 9, isPlaying: false},
-  {name: 'Mike Cruz Remix', popularity: 2, isPlaying: false},
+  {name: 'Todd Terry Remix', artist: 'Demi Devato', popularity: 5},
+  {name: 'VARA Remix', artist: 'Demi Devato', popularity: 5},
+  {name: 'Dave Aude Remix', artist: 'Demi Devato', popularity: 3},
+  {name: 'Cahill Remix', artist: 'Demi Devato', popularity: 6},
+  {name: 'Plastic Plates Remix', artist: 'Demi Devato', popularity: 9},
+  {name: 'Mike Cruz Remix', artist: 'Demi Devato', popularity: 2},
 ];
 
 class musicPlayerLandscape extends Component {
@@ -28,6 +28,7 @@ class musicPlayerLandscape extends Component {
     isLandscape: false,
     soundBarHeight: new Animated.Value(0),
     playlistAppear: playlist.map(playlistItem => new Animated.Value(0)),
+    isPlayingIndex: 3,
   }
 
   componentDidMount() {
@@ -42,7 +43,6 @@ class musicPlayerLandscape extends Component {
       })).start();
     }
   }
-  
   
   animateSoundBars = () => {
     Animated.timing(
@@ -71,7 +71,7 @@ class musicPlayerLandscape extends Component {
   }
   
   render() {
-    const {isLandscape, soundBarHeight} = this.state;
+    const {isLandscape, soundBarHeight, isPlayingIndex} = this.state;
     const styles = this.combineStyles();
 
     return (
@@ -79,8 +79,8 @@ class musicPlayerLandscape extends Component {
         <StatusBar barStyle="light-content" />
         <View style={styles.innerContainer}>
           <View style={styles.navigation}>
-            <Text style={styles.song}>Dave Aude Remix</Text>
-            <Text style={styles.artist}>Demi Lovato</Text>
+            <Text style={styles.song}>{playlist[isPlayingIndex].name}</Text>
+            <Text style={styles.artist}>{playlist[isPlayingIndex].artist}</Text>
           </View>
           <View style={styles.player}>
             {!isLandscape && <Image source={require('../img/demi-lovato.jpg')} style={styles.cover} />}
@@ -99,7 +99,7 @@ class musicPlayerLandscape extends Component {
                     ]} 
                     key={playlistItem.name}
                   >
-                    <View style={[styles.playlistItemSoundBars, playlistItem.isPlaying && styles.playlistItemSoundBarsVisible]}>
+                    <View style={[styles.playlistItemSoundBars, isPlayingIndex === index && styles.playlistItemSoundBarsVisible]}>
                       {[...Array(3).keys()].map(index => (
                         <Animated.View 
                           key={index} 
@@ -115,7 +115,7 @@ class musicPlayerLandscape extends Component {
                         />
                       ))}
                     </View>
-                    <Text style={[styles.playlistItemText, playlistItem.isPlaying && styles.playlistItemTextActive]}>{playlistItem.name}</Text>
+                    <Text style={[styles.playlistItemText, isPlayingIndex === index && styles.playlistItemTextActive]}>{playlistItem.name}</Text>
                     <View style={styles.playlistItemPopularity}>
                       {[...Array(10).keys()].map(index => (
                         <View 
