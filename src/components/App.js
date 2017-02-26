@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const getRandomIntBetween = (start, end) => Math.floor(Math.random() * end) + start;
 
-const soundBarHeights = [...Array(30).keys()].map(() => getRandomIntBetween(1, 50));
 const isAndroid = Platform.OS === 'android';
 const playlist = [
   {name: 'Todd Terry Remix', popularity: 5, isPlaying: false},
@@ -99,7 +98,7 @@ class musicPlayerLandscape extends Component {
               </View>
             ) : (
               <View style={styles.soundBars}>
-                {soundBarHeights.map((height, index) => (
+                {[...Array(30).keys()].map(index => (
                   <Animated.View 
                     key={index} 
                     style={[
