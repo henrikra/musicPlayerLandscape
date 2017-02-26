@@ -77,9 +77,20 @@ class musicPlayerLandscape extends Component {
                 {playlist.map(playlistItem => (
                   <View style={styles.playlistItem} key={playlistItem.name}>
                     <View style={[styles.playlistItemSoundBars, playlistItem.isPlaying && styles.playlistItemSoundBarsVisible]}>
-                      <View style={styles.playlistItemSoundBar} />
-                      <View style={styles.playlistItemSoundBar} />
-                      <View style={styles.playlistItemSoundBar} />
+                      {[...Array(3).keys()].map(index => (
+                        <Animated.View 
+                          key={index} 
+                          style={[
+                            styles.playlistItemSoundBar, 
+                            {
+                              height: soundBarHeight.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [0, getRandomIntBetween(2, 10)],
+                              }),
+                            },
+                          ]} 
+                        />
+                      ))}
                     </View>
                     <Text style={styles.playlistItemText}>{playlistItem.name}</Text>
                     <View style={styles.playlistItemPopularity}>
@@ -106,7 +117,7 @@ class musicPlayerLandscape extends Component {
                       {
                         height: soundBarHeight.interpolate({
                           inputRange: [0, 1],
-                          outputRange: [0, getRandomIntBetween(1, 70)],
+                          outputRange: [0, getRandomIntBetween(3, 70)],
                         }),
                       },
                     ]} 
@@ -202,6 +213,8 @@ const stylesGeneral = {
     flexDirection: 'row',
     marginRight: 5,
     opacity: 0,
+    alignItems: 'flex-end',
+    height: 10,
   },
   playlistItemSoundBarsVisible: {
     opacity: 1,
