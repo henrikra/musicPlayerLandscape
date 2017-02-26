@@ -92,7 +92,7 @@ class musicPlayerLandscape extends Component {
                         />
                       ))}
                     </View>
-                    <Text style={styles.playlistItemText}>{playlistItem.name}</Text>
+                    <Text style={[styles.playlistItemText, playlistItem.isPlaying && styles.playlistItemTextActive]}>{playlistItem.name}</Text>
                     <View style={styles.playlistItemPopularity}>
                       {[...Array(10).keys()].map(index => (
                         <View 
@@ -209,6 +209,9 @@ const stylesGeneral = {
     color: '#AAAAAA',
     flex: 1,
   },
+  playlistItemTextActive: {
+    color: '#ffffff',
+  },
   playlistItemSoundBars: {
     flexDirection: 'row',
     marginRight: 5,
@@ -220,7 +223,7 @@ const stylesGeneral = {
     opacity: 1,
   },
   playlistItemSoundBar: {
-    width: 3,
+    width: 4,
     height: 10,
     marginRight: 3,
     backgroundColor: '#65CBDD',
