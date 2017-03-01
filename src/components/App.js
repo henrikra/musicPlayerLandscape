@@ -9,6 +9,7 @@ import {
   Animated,
   Dimensions,
   TouchableOpacity,
+  Easing,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -51,7 +52,11 @@ class musicPlayerLandscape extends Component {
 
   animateTimeline = () => {
     this.state.timelineWidth.setValue(0);
-    Animated.timing(this.state.timelineWidth, {toValue: 1, duration: getRandomIntBetween(20000, 25000)}).start();
+    Animated.timing(this.state.timelineWidth, {
+      toValue: 100, 
+      duration: getRandomIntBetween(20000, 25000), 
+      easing: Easing.linear,
+    }).start();
   }
   
   animateSoundBars = () => {
@@ -192,24 +197,14 @@ class musicPlayerLandscape extends Component {
                   {
                     width: this.state.timelineWidth.interpolate({
                       inputRange: [0, 1],
-                      outputRange: [0, 200],
+                      outputRange: ['0%', '1%'],
                     }),
                   },
                 ]}
               >
-                <Animated.View 
-                  style={[
-                    styles.timelineColored,
-                    {
-                      width: this.state.timelineWidth.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, 200],
-                      }),
-                    },
-                  ]} 
-                >
+                <View style={styles.timelineColored}>
                   <View style={styles.timelineDot} />
-                </Animated.View>
+                </View>
               </Animated.View>
             </View>
           </View>
@@ -358,7 +353,6 @@ const stylesGeneral = {
   timelineColored: {
     backgroundColor: '#5456fd',
     height: 6,
-    width: 100,
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
   },
