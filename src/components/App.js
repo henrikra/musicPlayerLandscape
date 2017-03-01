@@ -135,7 +135,7 @@ class musicPlayerLandscape extends Component {
                             {
                               height: soundBarHeight.interpolate({
                                 inputRange: [0, 1],
-                                outputRange: [0, getRandomIntBetween(2, 10)],
+                                outputRange: ['0%', `${getRandomIntBetween(5, 100)}%`],
                               }),
                             },
                           ]} 
